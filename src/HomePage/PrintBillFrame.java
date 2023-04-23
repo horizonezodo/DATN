@@ -62,12 +62,12 @@ public class PrintBillFrame extends javax.swing.JFrame {
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels","root","123456789");
-                pre = con.prepareStatement("select * from customer where name=?");
+                pre = con.prepareStatement("select c.phone,b.customerCCCD,c.day, c.outdate,c.date, r.price, c.amount,r.bed,r.roomnumber from bill b inner join customer c on b.customerCCCD = c.cccd inner join room r on b.roomId = r.roomnumber where name=?");
                 pre.setString(1, text.getText());
                 rs = pre.executeQuery();
                 if(rs.next()){
                     customerPhone=rs.getString("phone");
-                    CustomerCCCD=rs.getString("cccd");
+                    CustomerCCCD=rs.getString("customerCCCD");
                     CheckInDate=String.valueOf(rs.getString("date"));
                     CheckOutDate=String.valueOf(rs.getString("outdate"));
                     NumberADate=rs.getString("day");
