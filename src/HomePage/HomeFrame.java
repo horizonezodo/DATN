@@ -5,6 +5,7 @@ package HomePage;
 import LoginFrame.SigInFrame;
 import RoomManager.EditRoom;
 import RoomManager.addRoom;
+import java.awt.event.KeyEvent;
 import java.beans.Statement;
 import java.sql.Connection;
 
@@ -135,7 +136,7 @@ public class HomeFrame extends javax.swing.JFrame {
     public void  showBillTable(){
          try {
              int c = 0;
-             pre=con.prepareStatement("select o.oder_id, c.name, s.service_name from oderservice o inner join customer c on o.booking_room = c.roomnumber inner join service s on o.serviceOrder_id = s.service_id ");
+             pre=con.prepareStatement("select o.oder_id, c.name, s.service_name from oderservice o inner join customer c on o.booking_name = c.cccd inner join service s on o.serviceOrder_id = s.service_id ");
              rs=pre.executeQuery();
              ResultSetMetaData re = rs.getMetaData();
              c = re.getColumnCount();
@@ -352,11 +353,11 @@ public class HomeFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         menuPanel.setPreferredSize(new java.awt.Dimension(1000, 100));
-        menuPanel.setLayout(new java.awt.GridLayout());
+        menuPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         roomManager_lb.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         roomManager_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/manage room.png"))); // NOI18N
-        roomManager_lb.setText("Room");
+        roomManager_lb.setText("Phòng");
         roomManager_lb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 roomManager_lbMouseClicked(evt);
@@ -366,7 +367,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         checkIn_lb.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         checkIn_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Customer Registration & Check IN.png"))); // NOI18N
-        checkIn_lb.setText("Check In");
+        checkIn_lb.setText("Đặt phòng");
         checkIn_lb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 checkIn_lbMouseClicked(evt);
@@ -386,7 +387,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         checkOut_lb.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         checkOut_lb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Customer Check Out.png"))); // NOI18N
-        checkOut_lb.setText("Check Out");
+        checkOut_lb.setText("Trả phòng");
         checkOut_lb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 checkOut_lbMouseClicked(evt);
@@ -396,7 +397,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel34.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/transaction-history.png"))); // NOI18N
-        jLabel34.setText("History");
+        jLabel34.setText("Lịch sử");
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel34MouseClicked(evt);
@@ -406,7 +407,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel35.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/enploy.png"))); // NOI18N
-        jLabel35.setText("Employee");
+        jLabel35.setText("Nhân viên");
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel35MouseClicked(evt);
@@ -416,7 +417,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/customer-service-agent.png"))); // NOI18N
-        jLabel36.setText("Service");
+        jLabel36.setText("Dịch vụ");
         jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel36MouseClicked(evt);
@@ -426,7 +427,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/log out.jpg"))); // NOI18N
-        jLabel19.setText("Logout");
+        jLabel19.setText("Đăng xuất");
         jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel19MouseClicked(evt);
@@ -445,7 +446,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Number", "Type", "Bed", "Price", "Status"
+                "Mã phòng", "Loại phòng", "Loại giường", "Giá tiền", "Tình trạng"
             }
         ) {
             Class[] types = new Class [] {
@@ -460,7 +461,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         add_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/plus.png"))); // NOI18N
-        add_btn.setText("Add");
+        add_btn.setText("Thêm");
         add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_btnActionPerformed(evt);
@@ -469,7 +470,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         edit_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
-        edit_btn.setText("Edit");
+        edit_btn.setText("Sửa");
         edit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edit_btnActionPerformed(evt);
@@ -478,7 +479,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         delete_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
-        delete_btn.setText("Delete");
+        delete_btn.setText("Xóa");
         delete_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delete_btnActionPerformed(evt);
@@ -487,7 +488,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         refreshBtn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/refresh.png"))); // NOI18N
-        refreshBtn.setText("ReFresh");
+        refreshBtn.setText("Làm mới");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -533,29 +534,29 @@ public class HomeFrame extends javax.swing.JFrame {
         checkInPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel2.setText("Customer Name");
+        jLabel2.setText("Tên khách hàng");
 
         jLabel3.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel3.setText("Check In Date");
+        jLabel3.setText("Ngày vào");
 
         jLabel4.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel4.setText("Customer Phonenumber");
+        jLabel4.setText("Số điện thoại");
 
         jLabel5.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel5.setText("Room Number");
+        jLabel5.setText("Mã phòng");
 
         jLabel6.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel6.setText("CCCD/CMTND");
 
         jLabel9.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel9.setText("Room Type");
+        jLabel9.setText("Loại phòng");
 
         jLabel11.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel11.setText("Price");
+        jLabel11.setText("Giá phòng");
 
         checkIn_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         checkIn_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checked.png"))); // NOI18N
-        checkIn_btn.setText("Check In Now");
+        checkIn_btn.setText("Đặt phòng");
         checkIn_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkIn_btnActionPerformed(evt);
@@ -564,7 +565,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         clear_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         clear_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom.png"))); // NOI18N
-        clear_btn.setText("Clear");
+        clear_btn.setText("Xóa Form");
         clear_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear_btnActionPerformed(evt);
@@ -584,17 +585,32 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         cphonetxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        cphonetxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cphonetxtKeyPressed(evt);
+            }
+        });
 
         cccdTxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        cccdTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cccdTxtKeyPressed(evt);
+            }
+        });
 
         croomNumberTxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        croomNumberTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                croomNumberTxtKeyPressed(evt);
+            }
+        });
 
         cStatus.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         cStatus.setEnabled(false);
 
         checkRoom_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         checkRoom_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
-        checkRoom_btn.setText("Check Room");
+        checkRoom_btn.setText("Kiểm tra phòng");
         checkRoom_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkRoom_btnActionPerformed(evt);
@@ -613,13 +629,12 @@ public class HomeFrame extends javax.swing.JFrame {
                                 .addGroup(checkInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(checkInPanelLayout.createSequentialGroup()
                                         .addGap(77, 77, 77)
-                                        .addComponent(jLabel2))
+                                        .addGroup(checkInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(checkInPanelLayout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jLabel4))
-                                    .addGroup(checkInPanelLayout.createSequentialGroup()
-                                        .addGap(197, 197, 197)
-                                        .addComponent(jLabel11)))
+                                        .addGap(172, 172, 172)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(58, 58, 58)
                                 .addGroup(checkInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cphonetxt, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
@@ -704,7 +719,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Ma Order", "Phong Order", "Ten Service"
+                "Mã Order", "Tên Khách hàng Order", "Tên dịch vụ"
             }
         ));
         billTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -715,17 +730,27 @@ public class HomeFrame extends javax.swing.JFrame {
         jScrollPane3.setViewportView(billTable);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel7.setText("Ma Order");
+        jLabel7.setText("Mã Order");
 
         oderIdTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        oderIdTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                oderIdTxtKeyPressed(evt);
+            }
+        });
 
         bookingRoomTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        bookingRoomTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bookingRoomTxtKeyPressed(evt);
+            }
+        });
 
         serviceNameTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         oderAdd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         oderAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/plus.png"))); // NOI18N
-        oderAdd.setText("Them Order");
+        oderAdd.setText("Thêm Order");
         oderAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 oderAddActionPerformed(evt);
@@ -734,7 +759,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         updateOder.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         updateOder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/edit.png"))); // NOI18N
-        updateOder.setText("Sua Order");
+        updateOder.setText("Sửa Order");
         updateOder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateOderActionPerformed(evt);
@@ -743,7 +768,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         deleteOrder.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         deleteOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
-        deleteOrder.setText("Xoa Order");
+        deleteOrder.setText("Xóa Order");
         deleteOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteOrderActionPerformed(evt);
@@ -752,7 +777,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         OderClearForn.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         OderClearForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom.png"))); // NOI18N
-        OderClearForn.setText("Xoa Font");
+        OderClearForn.setText("Xóa Font");
         OderClearForn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OderClearFornActionPerformed(evt);
@@ -760,16 +785,16 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         jLabel26.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel26.setText("Phong Order");
+        jLabel26.setText("Mã CCCD Khách Order");
 
         jLabel38.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel38.setText("Ten Service");
+        jLabel38.setText("Tên dịch vụ");
 
         jLabel40.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel40.setText("Thông tin oder khách hàng");
 
         jLabel41.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel41.setText("DANH SÁCH DỊCH VỤ");
+        jLabel41.setText("DANH SÁCH ORDER");
 
         javax.swing.GroupLayout BillPanelLayout = new javax.swing.GroupLayout(BillPanel);
         BillPanel.setLayout(BillPanelLayout);
@@ -785,27 +810,28 @@ public class HomeFrame extends javax.swing.JFrame {
                                     .addGroup(BillPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(deleteOrder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(oderAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                     .addGroup(BillPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(updateOder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(OderClearForn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(BillPanelLayout.createSequentialGroup()
                                     .addComponent(jLabel38)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(serviceNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(BillPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel26)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bookingRoomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(serviceNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(BillPanelLayout.createSequentialGroup()
                             .addGap(59, 59, 59)
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(oderIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(oderIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BillPanelLayout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(jLabel26)
+                            .addGap(18, 18, 18)
+                            .addComponent(bookingRoomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(BillPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
             .addGroup(BillPanelLayout.createSequentialGroup()
@@ -833,9 +859,9 @@ public class HomeFrame extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(oderIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
-                        .addGroup(BillPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel26)
-                            .addComponent(bookingRoomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(BillPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bookingRoomTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))
                         .addGap(73, 73, 73)
                         .addGroup(BillPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel38)
@@ -858,35 +884,35 @@ public class HomeFrame extends javax.swing.JFrame {
         checkOutPanel.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel8.setText("Room Number");
+        jLabel8.setText("Mã phòng");
 
         jLabel10.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel10.setText("Customer Phonenumber");
+        jLabel10.setText("Số điện thoại");
 
         jLabel12.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel12.setText("Customer Name");
+        jLabel12.setText("Tên khách hàng");
 
         jLabel13.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel13.setText("CCCD/CMT");
 
         jLabel14.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel14.setText("Price A Day");
+        jLabel14.setText("Giá tiền một ngày");
 
         jLabel15.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel15.setText("Number Of Days");
+        jLabel15.setText("Số ngày ở lại");
 
         jLabel16.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel16.setText("Total Amount");
+        jLabel16.setText("Tổng tiền");
 
         jLabel17.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel17.setText("Day Check In");
+        jLabel17.setText("Ngày đặt phòng");
 
         jLabel18.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel18.setText("Day Check Out");
+        jLabel18.setText("Ngày trả phòng");
 
         jButton1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checkout.png"))); // NOI18N
-        jButton1.setText("Check Out Now");
+        jButton1.setText("Trả phòng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -895,7 +921,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         dClearBtn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         dClearBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom.png"))); // NOI18N
-        dClearBtn.setText("Clear");
+        dClearBtn.setText("Xóa Font");
         dClearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dClearBtnActionPerformed(evt);
@@ -910,7 +936,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Customer Name", "Customer phonenumber", "CCCD/CMT", "Day Check In", "Day Check Out", "Price A Day", "Total Amount"
+                "Tên khách hàng", "Số điện thoại", "CCCD/CMT", "Ngày đặt phòng", "Ngày trả phòng", "Số tiền một ngày", "Tổng tiền"
             }
         ) {
             Class[] types = new Class [] {
@@ -970,7 +996,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         searchBtn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/research.png"))); // NOI18N
-        searchBtn.setText("Search");
+        searchBtn.setText("Tìm kiếm");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
@@ -979,7 +1005,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         crefresh_btn.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         crefresh_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/refresh.png"))); // NOI18N
-        crefresh_btn.setText("Refresh");
+        crefresh_btn.setText("Làm mới");
         crefresh_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crefresh_btnActionPerformed(evt);
@@ -987,11 +1013,16 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         jLabel39.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel39.setText("Ma Hoa Don");
+        jLabel39.setText("Mã hóa đơn");
 
         billId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 billIdActionPerformed(evt);
+            }
+        });
+        billId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                billIdKeyPressed(evt);
             }
         });
 
@@ -1008,35 +1039,36 @@ public class HomeFrame extends javax.swing.JFrame {
                         .addGap(79, 79, 79)
                         .addComponent(dRoomNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(crefresh_btn))
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(dClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(checkOutPanelLayout.createSequentialGroup()
                         .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dpriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)
                             .addComponent(jLabel12)
                             .addComponent(dnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(jLabel14)
                             .addComponent(dCheckInTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel39)
-                            .addComponent(billId))
+                            .addComponent(billId)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(172, 172, 172)
                         .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(numberofdayTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel10)
                             .addComponent(dphoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(dCheckOutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dCheckOutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(174, 174, 174)
                         .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
                             .addComponent(dcccdTXt, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)
                             .addComponent(totalAmountTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
+                            .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(crefresh_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 63, Short.MAX_VALUE))
         );
         checkOutPanelLayout.setVerticalGroup(
@@ -1047,7 +1079,7 @@ public class HomeFrame extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(dRoomNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn)
-                    .addComponent(crefresh_btn))
+                    .addComponent(dClearBtn))
                 .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(checkOutPanelLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -1088,16 +1120,13 @@ public class HomeFrame extends javax.swing.JFrame {
                     .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
                         .addComponent(jButton1)))
+                .addGap(18, 18, 18)
                 .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(checkOutPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dCheckInTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dCheckOutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(checkOutPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(dClearBtn)))
-                .addGap(32, 32, 32)
+                    .addGroup(checkOutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dCheckInTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dCheckOutTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(crefresh_btn))
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(209, Short.MAX_VALUE))
         );
@@ -1127,7 +1156,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         erefresh_btn1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         erefresh_btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/refresh.png"))); // NOI18N
-        erefresh_btn1.setText("Refresh");
+        erefresh_btn1.setText("Làm mới");
         erefresh_btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 erefresh_btn1ActionPerformed(evt);
@@ -1139,8 +1168,9 @@ public class HomeFrame extends javax.swing.JFrame {
 
         searchCCCDTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
+        HistoryClear.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         HistoryClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom.png"))); // NOI18N
-        HistoryClear.setText("Clear");
+        HistoryClear.setText("Xóa form");
         HistoryClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HistoryClearActionPerformed(evt);
@@ -1152,7 +1182,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         esearch.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         esearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bill.png"))); // NOI18N
-        esearch.setText("Show Bill");
+        esearch.setText("In hóa đơn");
         esearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 esearchActionPerformed(evt);
@@ -1206,7 +1236,7 @@ public class HomeFrame extends javax.swing.JFrame {
                     .addComponent(esearch)
                     .addComponent(erefresh_btn1)
                     .addComponent(HistoryClear))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         showPanel.add(History, "card5");
@@ -1267,12 +1297,27 @@ public class HomeFrame extends javax.swing.JFrame {
                 nvIdTxtActionPerformed(evt);
             }
         });
+        nvIdTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nvIdTxtKeyPressed(evt);
+            }
+        });
 
         nvNameTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         nvPhoneTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        nvPhoneTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nvPhoneTxtKeyPressed(evt);
+            }
+        });
 
         nvCCCD.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        nvCCCD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nvCCCDKeyPressed(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel27.setText("Giới Tính");
@@ -1284,6 +1329,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
         sexTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
+        nvDelete_btn.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         nvDelete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
         nvDelete_btn.setText("Xóa");
         nvDelete_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -1292,6 +1338,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
+        nvClearForm.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         nvClearForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom.png"))); // NOI18N
         nvClearForm.setText("Clear");
         nvClearForm.addActionListener(new java.awt.event.ActionListener() {
@@ -1304,6 +1351,16 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel37.setText("Luong");
 
         salaryTxt.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        salaryTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaryTxtActionPerformed(evt);
+            }
+        });
+        salaryTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                salaryTxtKeyPressed(evt);
+            }
+        });
 
         jLabel42.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel42.setText("DANH SÁCH NHÂN VIÊN");
@@ -1330,15 +1387,16 @@ public class HomeFrame extends javax.swing.JFrame {
                                             .addComponent(jLabel24)
                                             .addComponent(jLabel22)))
                                     .addGroup(EmployeeLayout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
+                                        .addGap(60, 60, 60)
                                         .addComponent(jLabel37)))
                                 .addGap(33, 33, 33)
-                                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(salaryTxt)
-                                        .addComponent(nvNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                        .addComponent(nvPhoneTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                                    .addComponent(nvIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(salaryTxt)
+                                            .addComponent(nvPhoneTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                                        .addComponent(nvIdTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nvNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(81, 81, 81)
                                 .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel25)
@@ -1347,18 +1405,21 @@ public class HomeFrame extends javax.swing.JFrame {
                                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nvCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nvChucVuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(EmployeeLayout.createSequentialGroup()
+                                                .addComponent(nvChucVuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(nvEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(EmployeeLayout.createSequentialGroup()
                                                 .addComponent(sexTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(nv_addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(EmployeeLayout.createSequentialGroup()
+                                                .addComponent(nvCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(91, 91, 91)
                                                 .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(nvClearForm, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                                    .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(nvDelete_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(nvEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                                        .addComponent(nv_addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
+                                                    .addComponent(nvDelete_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                             .addGroup(EmployeeLayout.createSequentialGroup()
                                 .addGap(458, 458, 458)
                                 .addComponent(jLabel42)))
@@ -1372,41 +1433,49 @@ public class HomeFrame extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel42)
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel21)
+                .addGap(36, 36, 36)
+                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nvIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel22)
+                        .addComponent(jLabel27)
+                        .addComponent(sexTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nv_addBtn)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EmployeeLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(25, 25, 25)
                         .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nv_addBtn)
-                            .addComponent(jLabel22)
-                            .addComponent(nvIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27)
-                            .addComponent(sexTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
                             .addComponent(nvNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nvChucVuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23)
                             .addComponent(jLabel28)
-                            .addComponent(nvEdit)))
+                            .addComponent(nvChucVuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(EmployeeLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21)))
-                .addGap(30, 30, 30)
-                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(nvPhoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nvCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25)
-                    .addComponent(nvDelete_btn))
-                .addGap(19, 19, 19)
-                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37)
-                    .addComponent(salaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nvClearForm))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(nvEdit)))
+                .addGap(6, 6, 6)
+                .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(EmployeeLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(nvDelete_btn)
+                        .addGap(27, 27, 27)
+                        .addComponent(nvClearForm)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(EmployeeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(nvPhoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25)
+                            .addComponent(nvCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(salaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel37))
+                        .addGap(132, 132, 132))))
         );
 
         showPanel.add(Employee, "card5");
@@ -1469,6 +1538,11 @@ public class HomeFrame extends javax.swing.JFrame {
         });
 
         service_price.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        service_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                service_priceKeyPressed(evt);
+            }
+        });
 
         service_name.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
@@ -1486,6 +1560,7 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
+        delete_service.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         delete_service.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
         delete_service.setText("Xóa Dịch Vụ");
         delete_service.addActionListener(new java.awt.event.ActionListener() {
@@ -1533,9 +1608,8 @@ public class HomeFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(delete_service, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(service_add_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(service_update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(service_add_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(service_update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(48, 48, 48))))
             .addGroup(ServicePanelLayout.createSequentialGroup()
                 .addGroup(ServicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1702,13 +1776,14 @@ public class HomeFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "All field value is not null");
         }else{
              try {
-                pre = con.prepareStatement("insert into customer(name,phone,date,roomnumber,price,cccd) values(?,?,?,?,?,?)");
+                pre = con.prepareStatement("insert into customer(name,phone,date,roomnumber,price,cccd,customer_status) values(?,?,?,?,?,?,?)");
                 pre.setString(1, cnameTxt.getText());
                 pre.setString(2, cphonetxt.getText());
                 pre.setString(3, dateInTxt.getText());
                 pre.setString(4, croomNumberTxt.getText());
                 pre.setString(5, cprice.getText());
                 pre.setString(6, cccdTxt.getText());
+                pre.setString(7, "uncheck");
                 pre.executeUpdate();
                 PreparedStatement pre1 = con.prepareStatement("update room set status=? where roomnumber=?");
                 pre1.setString(1, "booked");
@@ -1724,6 +1799,7 @@ public class HomeFrame extends javax.swing.JFrame {
                
                 
         }   catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Some thing wrong in here");
                 Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -1758,12 +1834,18 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_checkRoom_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                try {
-                    pre = con.prepareStatement("update customer set outdate=?,amount=?,day=? where cccd=?");
+        if((billId.getText().equals(""))){
+            JOptionPane.showMessageDialog(this, "Ma Hoa Don is not null");
+        }
+        else{
+        try {
+                    pre = con.prepareStatement("update customer set outdate=?,amount=?,day=?, customer_status=? where cccd=?");
                     pre.setString(1, dCheckOutTxt.getText());
                     pre.setString(2, totalAmountTxt.getText());
                     pre.setString(3, numberofdayTxt.getText());
-                    pre.setString(4, dcccdTXt.getText());
+                    pre.setString(4, "checked");
+                    pre.setString(5, dcccdTXt.getText());
+                    
                     pre.executeUpdate();
                     PreparedStatement pre1 = con.prepareStatement("update room set status=? where roomnumber=?");
                     pre1.setString(1, "not-book");
@@ -1775,9 +1857,15 @@ public class HomeFrame extends javax.swing.JFrame {
                     pre2.setString(2,dRoomNumberTxt.getText());
                     pre2.setString(1,billId.getText());
                     pre2.executeUpdate();
+                    
+                    PreparedStatement pre3 = con.prepareStatement("update oderservice set oder_status='ok' where booking_name=?");
+                    pre3.setString(1, dcccdTXt.getText());
+                    pre3.executeUpdate();
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void dClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dClearBtnActionPerformed
@@ -1795,8 +1883,9 @@ public class HomeFrame extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
                 try {
-                    pre = con.prepareStatement("select name,phone,date,price,cccd from customer where roomnumber=?");
+                    pre = con.prepareStatement("select name,phone,date,price,cccd from customer where roomnumber=? and customer_status=?");
                     pre.setString(1, dRoomNumberTxt.getText());
+                    pre.setString(2, "uncheck");
                     rs=pre.executeQuery();
                     if(rs.next()){
                         dnameTxt.setText(rs.getString("name"));
@@ -1806,15 +1895,13 @@ public class HomeFrame extends javax.swing.JFrame {
                         dCheckInTxt.setText(rs.getString("date"));
                     }
                     String money="";
-                    PreparedStatement pre1 = con.prepareStatement("select sum(service_price) as money from oderservice o inner join service s on o.serviceOrder_id = s.service_id where booking_room=? ");
-                    pre1.setString(1, dRoomNumberTxt.getText());
+                    PreparedStatement pre1 = con.prepareStatement("select sum(service_price) as money from oderservice o inner join service s on o.serviceOrder_id = s.service_id where booking_name=? and o.oder_status='not-ok'");
+                    pre1.setString(1, dcccdTXt.getText());
                     ResultSet rs1 = pre1.executeQuery();
                     if(rs1.next()){
                         money = rs1.getString("money");
-                    }else{
-                        money = "0";
                     }
-                    
+                    System.out.println(money);
                     String s1,s2;
                     s1=dCheckOutTxt.getText();
                     s2=rs.getString("date");
@@ -1826,13 +1913,23 @@ public class HomeFrame extends javax.swing.JFrame {
                     if(days == 0){
                         days=1;
                     }
+                    double price;
                     numberofdayTxt.setText(String.valueOf(days));
-                    double price = (Double.parseDouble(rs.getString("price")) * days) + Double.parseDouble(money);
+                    if(money != null){
+                        System.out.println("abc");
+                         
+                          price = (Double.parseDouble(rs.getString("price")) * days) + Double.parseDouble(money);
+                    }else{
+                        System.out.println("bcs");
+                        price = (Double.parseDouble(rs.getString("price")) * days);
+                    }
                     totalAmountTxt.setText(String.valueOf(price));
                 } catch (SQLException ex) {
                     Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "The room has not is booked");
                 } catch (ParseException ex) {
                     Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "The room has not is booked");
                 }
         
     }//GEN-LAST:event_searchBtnActionPerformed
@@ -1971,10 +2068,10 @@ public class HomeFrame extends javax.swing.JFrame {
                 pre1.setString(4, serviceStatus.getText());
                 pre1.setString(5, service_id.getText());
                 pre1.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Them service thanh cong");
+                JOptionPane.showMessageDialog(this, "Thêm service thanh cong");
                 showService();
             }else{
-                JOptionPane.showMessageDialog(this, "Khong tim thay nhan vien co ten nhu nay");
+                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên có tên như này");
             }
             
             System.out.println(id);
@@ -2015,6 +2112,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Check In Success");
                 showService();
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Sự cố hệ thống mời bạn nhập lại");
                 Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -2110,7 +2208,9 @@ public class HomeFrame extends javax.swing.JFrame {
                 pre=con.prepareStatement("delete from service where service_id=?");
                 pre.setString(1, serviceId);
                 pre.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Hệ thống xảy ra sự cố");
                 Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
                  
@@ -2152,6 +2252,7 @@ public class HomeFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "All field is not null");
         }else{
             String ServiceId = "";
+            
             try{
                 PreparedStatement pre1 = con.prepareStatement("select service_id from service where service_name = ?");
                 pre1.setString(1, serviceNameTxt.getText());
@@ -2163,10 +2264,11 @@ public class HomeFrame extends javax.swing.JFrame {
             }else{
                     JOptionPane.showMessageDialog(this, "Can not find this service Name ");
                 }
-                 pre = con.prepareStatement("insert into oderservice(oder_id,booking_room,serviceOrder_id) values(?,?,?)");
+                 pre = con.prepareStatement("insert into oderservice(oder_id,booking_name,serviceOrder_id,oder_status) values(?,?,?,?)");
                 pre.setString(1, oderIdTxt.getText());
                 pre.setString(2, bookingRoomTxt.getText());
                 pre.setString(3, ServiceId);
+                pre.setString(4, "not-ok");
                 pre.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Add Order Success");
                 showBillTable();
@@ -2174,6 +2276,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 bookingRoomTxt.setText("");
                 serviceNameTxt.setText("");
         }   catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Cannot add this order");
                 Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -2183,8 +2286,20 @@ public class HomeFrame extends javax.swing.JFrame {
         int row = billTable.getSelectedRow();
          TableModel model = billTable.getModel();
         oderIdTxt.setText(model.getValueAt(row, 0).toString());
-        bookingRoomTxt.setText(model.getValueAt(row, 1).toString());
+        String name = model.getValueAt(row, 1).toString();
         serviceNameTxt.setText(model.getValueAt(row, 2).toString());
+        
+        try{
+            pre = con.prepareStatement("select cccd from customer where name=?");
+            pre.setString(1, name);
+            rs = pre.executeQuery();
+            if(rs.next()){
+                bookingRoomTxt.setText(rs.getString("cccd"));
+            }
+        }       catch (SQLException ex) {
+                    Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "Customer CCCD is not valid");
+                }
         
     }//GEN-LAST:event_billTableMouseClicked
 
@@ -2199,7 +2314,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 rs = pre1.executeQuery();
                 if(rs.next()){
                     id = rs.getString("service_id");
-                    pre = con.prepareStatement("update oderservice set booking_room=? , serviceOrder_id=? where oder_id=?");
+                    pre = con.prepareStatement("update oderservice set booking_name=? , serviceOrder_id=? where oder_id=?");
                     pre.setString(1, bookingRoomTxt.getText());
                     pre.setString(2, serviceNameTxt.getText());
                     pre.setString(3, oderIdTxt.getText());
@@ -2229,6 +2344,7 @@ public class HomeFrame extends javax.swing.JFrame {
                 showBillTable();
                 JOptionPane.showMessageDialog(this, "One order have been deleted");
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Some thing wrong in here");
                 Logger.getLogger(HomeFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
                  
@@ -2252,6 +2368,170 @@ public class HomeFrame extends javax.swing.JFrame {
     private void billIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_billIdActionPerformed
+
+    private void oderIdTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oderIdTxtKeyPressed
+//       String orderId_input=oderIdTxt.getText();
+//       char c = evt.getKeyChar();
+       if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           oderIdTxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               oderIdTxt.setEditable(true);
+           }else{
+               oderIdTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_oderIdTxtKeyPressed
+
+    private void bookingRoomTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bookingRoomTxtKeyPressed
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           bookingRoomTxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               bookingRoomTxt.setEditable(true);
+           }else{
+               bookingRoomTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_bookingRoomTxtKeyPressed
+
+    private void service_priceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_service_priceKeyPressed
+         if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           service_price.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               service_price.setEditable(true);
+           }else{
+               service_price.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_service_priceKeyPressed
+
+    private void nvIdTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nvIdTxtKeyPressed
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           nvIdTxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               nvIdTxt.setEditable(true);
+           }else{
+               nvIdTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_nvIdTxtKeyPressed
+
+    private void salaryTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryTxtActionPerformed
+     
+    }//GEN-LAST:event_salaryTxtActionPerformed
+
+    private void salaryTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salaryTxtKeyPressed
+          if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           salaryTxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               salaryTxt.setEditable(true);
+           }else{
+               salaryTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_salaryTxtKeyPressed
+
+    private void nvPhoneTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nvPhoneTxtKeyPressed
+        String nvPhone = nvPhoneTxt.getText();
+        int length = nvPhone.length();
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+            if(length<10){
+                nvPhoneTxt.setEditable(true);
+            }else{
+                nvPhoneTxt.setEditable(false);
+            }
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               nvPhoneTxt.setEditable(true);
+           }else{
+               nvPhoneTxt.setEditable(false);
+           }
+       }
+        
+    }//GEN-LAST:event_nvPhoneTxtKeyPressed
+
+    private void nvCCCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nvCCCDKeyPressed
+        String nvPhone = nvCCCD.getText();
+        int length = nvPhone.length();
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+            if(length<13){
+                nvCCCD.setEditable(true);
+            }else{
+                nvCCCD.setEditable(false);
+            }
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               nvCCCD.setEditable(true);
+           }else{
+               nvCCCD.setEditable(false);
+           }
+       }
+        
+    }//GEN-LAST:event_nvCCCDKeyPressed
+
+    private void billIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_billIdKeyPressed
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           billId.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               billId.setEditable(true);
+           }else{
+               billId.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_billIdKeyPressed
+
+    private void cphonetxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cphonetxtKeyPressed
+        String nvPhone = cphonetxt.getText();
+        int length = nvPhone.length();
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+            if(length<10){
+                cphonetxt.setEditable(true);
+            }else{
+                cphonetxt.setEditable(false);
+            }
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               cphonetxt.setEditable(true);
+           }else{
+               cphonetxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_cphonetxtKeyPressed
+
+    private void cccdTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cccdTxtKeyPressed
+         String nvPhone = cccdTxt.getText();
+        int length = nvPhone.length();
+        if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+            if(length<13){
+                cccdTxt.setEditable(true);
+            }else{
+                cccdTxt.setEditable(false);
+            }
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               cccdTxt.setEditable(true);
+           }else{
+               cccdTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_cccdTxtKeyPressed
+
+    private void croomNumberTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_croomNumberTxtKeyPressed
+         if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           croomNumberTxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               croomNumberTxt.setEditable(true);
+           }else{
+               croomNumberTxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_croomNumberTxtKeyPressed
 
     /**830-200
      * @param args the command line arguments

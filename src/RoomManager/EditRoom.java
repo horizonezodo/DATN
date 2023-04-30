@@ -6,6 +6,7 @@
 package RoomManager;
 
 
+import java.awt.event.KeyEvent;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -89,9 +90,19 @@ public class EditRoom extends javax.swing.JFrame {
 
         numtxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         numtxt.setMinimumSize(new java.awt.Dimension(120, 32));
+        numtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                numtxtKeyPressed(evt);
+            }
+        });
 
         pricetxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         pricetxt.setMinimumSize(new java.awt.Dimension(120, 32));
+        pricetxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pricetxtKeyPressed(evt);
+            }
+        });
 
         statusTxt.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         statusTxt.setMinimumSize(new java.awt.Dimension(120, 32));
@@ -230,6 +241,30 @@ public class EditRoom extends javax.swing.JFrame {
         pricetxt.setText("");
         statusTxt.setText("");
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void numtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numtxtKeyPressed
+         if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           numtxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               numtxt.setEditable(true);
+           }else{
+               numtxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_numtxtKeyPressed
+
+    private void pricetxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pricetxtKeyPressed
+       if(evt.getKeyChar() >='0' && evt.getKeyChar() <='9'){
+           pricetxt.setEditable(true);
+       }else{
+           if(evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode()==KeyEvent.VK_DELETE){
+               pricetxt.setEditable(true);
+           }else{
+               pricetxt.setEditable(false);
+           }
+       }
+    }//GEN-LAST:event_pricetxtKeyPressed
 
     /**
      * @param args the command line arguments

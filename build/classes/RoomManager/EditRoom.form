@@ -177,6 +177,9 @@
           <Dimension value="[120, 32]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numtxtKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="pricetxt">
       <Properties>
@@ -187,6 +190,9 @@
           <Dimension value="[120, 32]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pricetxtKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="statusTxt">
       <Properties>
